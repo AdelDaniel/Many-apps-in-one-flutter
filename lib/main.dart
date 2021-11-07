@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 
-void main() => runApp(XylophoneApp());
+void main() => runApp(const XylophoneApp());
 
 class XylophoneApp extends StatelessWidget {
+  const XylophoneApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       home: Scaffold(
         backgroundColor: Colors.black,
         body: SafeArea(
-          child:  Column(
+          child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: const <Widget>[
               BuildKey(color: Colors.red, number: 1),
@@ -32,16 +34,15 @@ class BuildKey extends StatelessWidget {
   final Color color;
   final int number;
 
+  const BuildKey({
+    Key? key,
+    required this.color,
+    required this.number,
+  }) : super(key: key);
 
-  const BuildKey(
-      {Key? key,
-      required this.color,
-      required this.number,})
-      : super(key: key);
-
-  void playAudio(String tune) {
+  void playAudio() {
     final AudioPlayer player = AudioPlayer();
-    player.setAsset("../assets/note$tune.wav");
+    player.setAsset("../assets/note$number.wav");
     player.play();
   }
 
@@ -49,7 +50,7 @@ class BuildKey extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () => playAudio("$number"),
+        onTap: playAudio,
         child: Container(color: color),
       ),
     );
