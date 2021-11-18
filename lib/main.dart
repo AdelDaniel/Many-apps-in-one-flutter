@@ -1,58 +1,57 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio/just_audio.dart';
+import 'features/XylophoneApp/xylophone_app.dart';
+import 'home_screen.dart';
 
-void main() => runApp(const XylophoneApp());
+void main() => runApp(const App());
 
-class XylophoneApp extends StatelessWidget {
-  const XylophoneApp({Key? key}) : super(key: key);
+class App extends StatelessWidget {
+  const App({Key? key}) : super(key: key);
 
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: Scaffold(
-        backgroundColor: Colors.black,
-        body: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: const <Widget>[
-              BuildKey(color: Colors.red, number: 1),
-              BuildKey(color: Colors.orange, number: 2),
-              BuildKey(color: Colors.yellow, number: 3),
-              BuildKey(color: Colors.green, number: 4),
-              BuildKey(color: Colors.teal, number: 5),
-              BuildKey(color: Colors.blue, number: 6),
-              BuildKey(color: Colors.purple, number: 7),
-            ],
+  static Route _errorRoute() {
+    return MaterialPageRoute(
+      settings: const RouteSettings(name: "/error"),
+      builder: (_) => Scaffold(
+        body: Container(
+          alignment: Alignment.center,
+          child: const Center(
+            child: Text(
+              "Oops! \n SomeThing went Wrong",
+              textAlign: TextAlign.center,
+            ),
           ),
         ),
       ),
     );
   }
-}
-
-class BuildKey extends StatelessWidget {
-  final Color color;
-  final int number;
-
-  const BuildKey({
-    Key? key,
-    required this.color,
-    required this.number,
-  }) : super(key: key);
-
-  void playAudio() {
-    final AudioPlayer player = AudioPlayer();
-    player.setAsset("../assets/note$number.wav");
-    player.play();
-  }
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-      child: InkWell(
-        onTap: playAudio,
-        child: Container(color: color),
-      ),
+    return MaterialApp(
+      onGenerateRoute: (settings) {
+        print({'this is a ${settings.name}'});
+
+        switch (settings.name) {
+          case '/':
+          case HomeScreen.routeName:
+            return HomeScreen.route();
+          case XylophoneApp.routeName:
+            return XylophoneApp.route();
+          // case CatalogScreen.routeName:
+          //   return CatalogScreen.route();
+          // case ProductDetailsScreen.routeName:
+          //   return ProductDetailsScreen.route(settings.arguments as Product);
+          // case WishListScreen.routeName:
+          //   return WishListScreen.route();
+          // case CartScreen.routeName:
+          //   return CartScreen.route();
+          // case SettingsScreen.routeName:
+          //   return SettingsScreen.route();
+
+          default:
+            return _errorRoute();
+        }
+      },
+      home: const HomeScreen(),
     );
   }
 }
