@@ -25,6 +25,8 @@ void main() {
         .thenAnswer((_) => tTrueConnectionFuture);
     // act
     // NOTICE: We're NOT awaiting the result
+    // we are test Future.value(true) ::: not testing true or false
+    // (true or false) is a bool value :::  (Future.value(true)) is address value
     final actualResult = netWorkInfoImpl.isConnected;
     // assert
     verify(mockInternetConnectionChecker.hasConnection);
@@ -38,12 +40,9 @@ void main() {
     when(mockInternetConnectionChecker.hasConnection)
         .thenAnswer((_) => tFalseHasConnectionFuture);
     // act
-    // NOTICE: We're NOT awaiting the result
     final actualResult = netWorkInfoImpl.isConnected;
     // assert
     verify(mockInternetConnectionChecker.hasConnection);
-    // Utilizing Dart's default referential equality.
-    // Only references to the same object are equal.
     expect(actualResult, equals(tFalseHasConnectionFuture));
   });
 }

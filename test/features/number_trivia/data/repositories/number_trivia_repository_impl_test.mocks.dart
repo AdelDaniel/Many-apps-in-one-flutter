@@ -36,22 +36,16 @@ class MockNumberTriviaRemoteDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.NumberTriviaModel> getConcreteNumberTrivia(int? number) =>
-      (super.noSuchMethod(
-        Invocation.method(#getConcreteNumberTrivia, [number]),
-        returnValue:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-        returnValueForMissingStub:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-      ) as _i4.Future<_i2.NumberTriviaModel>);
+      (super.noSuchMethod(Invocation.method(#getConcreteNumberTrivia, [number]),
+              returnValue: Future<_i2.NumberTriviaModel>.value(
+                  _FakeNumberTriviaModel_0()))
+          as _i4.Future<_i2.NumberTriviaModel>);
   @override
   _i4.Future<_i2.NumberTriviaModel> getRandomNumberTrivia() =>
-      (super.noSuchMethod(
-        Invocation.method(#getRandomNumberTrivia, []),
-        returnValue:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-        returnValueForMissingStub:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-      ) as _i4.Future<_i2.NumberTriviaModel>);
+      (super.noSuchMethod(Invocation.method(#getRandomNumberTrivia, []),
+              returnValue: Future<_i2.NumberTriviaModel>.value(
+                  _FakeNumberTriviaModel_0()))
+          as _i4.Future<_i2.NumberTriviaModel>);
   @override
   String toString() => super.toString();
 }
@@ -67,13 +61,10 @@ class MockNumberTriviaLocalDataSource extends _i1.Mock
 
   @override
   _i4.Future<_i2.NumberTriviaModel> getLastNumberTrivia() =>
-      (super.noSuchMethod(
-        Invocation.method(#getLastNumberTrivia, []),
-        returnValue:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-        returnValueForMissingStub:
-            Future<_i2.NumberTriviaModel>.value(_FakeNumberTriviaModel_0()),
-      ) as _i4.Future<_i2.NumberTriviaModel>);
+      (super.noSuchMethod(Invocation.method(#getLastNumberTrivia, []),
+              returnValue: Future<_i2.NumberTriviaModel>.value(
+                  _FakeNumberTriviaModel_0()))
+          as _i4.Future<_i2.NumberTriviaModel>);
   @override
   _i4.Future<void> cacheNumberTrivia(_i2.NumberTriviaModel? triviaToCache) =>
       (super.noSuchMethod(

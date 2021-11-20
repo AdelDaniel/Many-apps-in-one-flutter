@@ -22,8 +22,8 @@ void main() {
         'should return a NumberTriviaModel when call fromJson and the JSON number is integer',
         () async {
       // act
-      final NumberTriviaModel result =
-          NumberTriviaModel.fromJson(fixture('number_trivia_int.json'));
+      final NumberTriviaModel result = NumberTriviaModel.fromJson(
+          fixture(fileType: FileType.intNumberTrivia));
       // assert
       expect(result, tIntNumberTriviaModel);
     });
@@ -32,8 +32,8 @@ void main() {
         'should return a NumberTriviaModel when call fromJson and the JSON number is double',
         () async {
       // act
-      final NumberTriviaModel result =
-          NumberTriviaModel.fromJson(fixture('number_trivia_double.json'));
+      final NumberTriviaModel result = NumberTriviaModel.fromJson(
+          fixture(fileType: FileType.doubleNumberTrivia));
       // assert
       expect(result, tIntNumberTriviaModel);
     });
@@ -45,7 +45,7 @@ void main() {
         () async {
       // act
       final String actualResult = tIntNumberTriviaModel.toJson();
-      final expected = fixture('number_trivia_int.json');
+      final expected = fixture(fileType: FileType.intNumberTrivia);
       final actualResultObject = NumberTriviaModel.fromJson(actualResult);
       final expectedObject = NumberTriviaModel.fromJson(expected);
       // assert
