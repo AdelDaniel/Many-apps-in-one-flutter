@@ -35,5 +35,5 @@ class NumberTriviaModel extends NumberTrivia {
       };
 
   @override
-  List<Object?> get props => [text, number];
+  List<Object> get props => [text, number];
 }

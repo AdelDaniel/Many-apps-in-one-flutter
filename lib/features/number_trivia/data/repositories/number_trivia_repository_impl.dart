@@ -1,11 +1,11 @@
 import 'package:dartz/dartz.dart';
-import 'package:xylophoneflutter/core/error/exceptions.dart';
-import 'package:xylophoneflutter/features/number_trivia/data/models/number_trivia_model.dart';
 
+import '../../../../core/error/exceptions.dart';
 import '../../../../core/error/failure.dart';
 import '../../../../core/platforms/network_info.dart';
 import '../../domain/entities/number_trivia.dart';
 import '../../domain/repositories/number_trivia_repository.dart';
+import '../models/number_trivia_model.dart';
 import '../sources/number_trivia_local_data_source.dart';
 import '../sources/number_trivia_remote_data_source.dart';
 
@@ -23,16 +23,12 @@ class NumberTriviaRepositoryImpl extends NumberTriviaRepository {
       required this.networkInfo});
 
   @override
-  Future<Either<Failure, NumberTrivia>> getConcreteNumberTrivia(
-      int number) async {
-    return _getTheNumber(
-        () => remoteDataSource.getConcreteNumberTrivia(number));
-  }
+  Future<Either<Failure, NumberTrivia>> getConcreteNumberTrivia(int number) =>
+      _getTheNumber(() => remoteDataSource.getConcreteNumberTrivia(number));
 
   @override
-  Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() async {
-    return _getTheNumber(() => remoteDataSource.getRandomNumberTrivia());
-  }
+  Future<Either<Failure, NumberTrivia>> getRandomNumberTrivia() =>
+      _getTheNumber(() => remoteDataSource.getRandomNumberTrivia());
 
   Future<Either<Failure, NumberTrivia>> _getTheNumber(
       ConcreteOrRandomChooser functionToCall) async {

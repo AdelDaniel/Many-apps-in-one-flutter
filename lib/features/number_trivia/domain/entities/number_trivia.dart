@@ -18,5 +18,5 @@ class NumberTrivia extends Equatable {
   final String type;
 
   @override
-  List<Object?> get props => [text, number];
+  List<Object> get props => [text, number];
 }
