@@ -51,10 +51,7 @@ class MockGetConcreteNumberTrivia extends _i1.Mock
           _i4.Params? params) =>
       (super.noSuchMethod(Invocation.method(#call, [params]),
           returnValue: Future<_i3.Either<_i6.Failure, _i7.NumberTrivia>>.value(
-              _FakeEither_1<_i6.Failure, _i7.NumberTrivia>()),
-          returnValueForMissingStub:
-              Future<_i3.Either<_i6.Failure, _i7.NumberTrivia>>.value(
-                  _FakeEither_1<_i6.Failure, _i7.NumberTrivia>())) as _i5
+              _FakeEither_1<_i6.Failure, _i7.NumberTrivia>())) as _i5
           .Future<_i3.Either<_i6.Failure, _i7.NumberTrivia>>);
   @override
   String toString() => super.toString();

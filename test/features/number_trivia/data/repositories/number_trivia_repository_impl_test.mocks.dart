@@ -5,13 +5,13 @@
 import 'dart:async' as _i4;
 
 import 'package:mockito/mockito.dart' as _i1;
-import 'package:xylophoneflutter/core/platforms/network_info.dart' as _i6;
+import 'package:xylophoneflutter/core/platforms/network_info.dart' as _i3;
 import 'package:xylophoneflutter/features/number_trivia/data/models/number_trivia_model.dart'
     as _i2;
 import 'package:xylophoneflutter/features/number_trivia/data/sources/number_trivia_local_data_source.dart'
-    as _i5;
+    as _i6;
 import 'package:xylophoneflutter/features/number_trivia/data/sources/number_trivia_remote_data_source.dart'
-    as _i3;
+    as _i5;
 
 // ignore_for_file: avoid_redundant_argument_values
 // ignore_for_file: avoid_setters_without_getters
@@ -25,11 +25,27 @@ import 'package:xylophoneflutter/features/number_trivia/data/sources/number_triv
 class _FakeNumberTriviaModel_0 extends _i1.Fake
     implements _i2.NumberTriviaModel {}
 
+/// A class which mocks [NetworkInfo].
+///
+/// See the documentation for Mockito's code generation for more information.
+class MockNetworkInfo extends _i1.Mock implements _i3.NetworkInfo {
+  MockNetworkInfo() {
+    _i1.throwOnMissingStub(this);
+  }
+
+  @override
+  _i4.Future<bool> get isConnected =>
+      (super.noSuchMethod(Invocation.getter(#isConnected),
+          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
+  @override
+  String toString() => super.toString();
+}
+
 /// A class which mocks [NumberTriviaRemoteDataSource].
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNumberTriviaRemoteDataSource extends _i1.Mock
-    implements _i3.NumberTriviaRemoteDataSource {
+    implements _i5.NumberTriviaRemoteDataSource {
   MockNumberTriviaRemoteDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -54,7 +70,7 @@ class MockNumberTriviaRemoteDataSource extends _i1.Mock
 ///
 /// See the documentation for Mockito's code generation for more information.
 class MockNumberTriviaLocalDataSource extends _i1.Mock
-    implements _i5.NumberTriviaLocalDataSource {
+    implements _i6.NumberTriviaLocalDataSource {
   MockNumberTriviaLocalDataSource() {
     _i1.throwOnMissingStub(this);
   }
@@ -71,22 +87,6 @@ class MockNumberTriviaLocalDataSource extends _i1.Mock
           Invocation.method(#cacheNumberTrivia, [triviaToCache]),
           returnValue: Future<void>.value(),
           returnValueForMissingStub: Future<void>.value()) as _i4.Future<void>);
-  @override
-  String toString() => super.toString();
-}
-
-/// A class which mocks [NetworkInfo].
-///
-/// See the documentation for Mockito's code generation for more information.
-class MockNetworkInfo extends _i1.Mock implements _i6.NetworkInfo {
-  MockNetworkInfo() {
-    _i1.throwOnMissingStub(this);
-  }
-
-  @override
-  _i4.Future<bool> get isConnected =>
-      (super.noSuchMethod(Invocation.getter(#isConnected),
-          returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
   @override
   String toString() => super.toString();
 }

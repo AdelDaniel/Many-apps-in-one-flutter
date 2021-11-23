@@ -54,21 +54,21 @@ void main() {
           when(mockInputConverter.stringToUnsignedInteger(any))
               .thenReturn(Right(tNumberParsed));
 
-      // test(
-      //   'should call the [InputConverter] to validate and convert the string to an unsigned integer',
-      //   () async {
-      //     // arrange
-      //     setUpMockInputConverterSuccess();
-      //     when(mockGetRandomNumberTrivia.call(any))
-      //         .thenAnswer((_) async => Right(tNumberTrivia));
-      //     // act
-      //     numberTriviaBloc
-      //         .add(const GetConcreteNumberEvent(number: tNumberString));
-      //     await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
-      //     // assert
-      //     verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
-      //   },
-      // );
+      test(
+        'should call the [InputConverter] to validate and convert the string to an unsigned integer',
+        () async {
+          // arrange
+          setUpMockInputConverterSuccess();
+          when(mockGetConcreteNumberTrivia.call(any))
+              .thenAnswer((_) async => Right(tNumberTrivia));
+          // act
+          numberTriviaBloc
+              .add(const GetConcreteNumberEvent(number: tNumberString));
+          await untilCalled(mockInputConverter.stringToUnsignedInteger(any));
+          // assert
+          verify(mockInputConverter.stringToUnsignedInteger(tNumberString));
+        },
+      );
 
       test(
         'should only get data from the concrete use case',

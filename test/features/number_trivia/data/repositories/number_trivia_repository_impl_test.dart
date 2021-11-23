@@ -23,8 +23,11 @@ import 'number_trivia_repository_impl_test.mocks.dart';
 // class MockNumberTriviaRemoteDataSource extends Mock
 //     implements NumberTriviaRemoteDataSource {}
 
-@GenerateMocks(
-    [NumberTriviaRemoteDataSource, NumberTriviaLocalDataSource, NetworkInfo])
+@GenerateMocks([
+  NetworkInfo,
+  NumberTriviaRemoteDataSource,
+  NumberTriviaLocalDataSource,
+])
 void main() {
   late NumberTriviaRepositoryImpl numberTriviaRepositoryImpl;
   late MockNumberTriviaLocalDataSource mockLocalDataSource;
@@ -44,18 +47,20 @@ void main() {
         localDataSource: mockLocalDataSource,
         remoteDataSource: mockRemoteDataSource,
         networkInfo: mockNetworkInfo);
-
-    print('setUp Before Each: \n ');
   });
 
 // getConcreteNumberTrivia &&  getRandomNumberTrivia
 // online && offline
 
   void _runTestsOnline({required Function allTests}) {
-    group('Device is online ... ', () {
-      setUp(() =>
-          when(mockNetworkInfo.isConnected).thenAnswer((_) async => true));
+    group('Device is online .. ', () {
+      setUp(() {
+        when(mockNetworkInfo.isConnected).thenAnswer((_) async => true);
+      });
+
       test('should check if the device is online...', () {
+        when(mockRemoteDataSource.getConcreteNumberTrivia(any))
+            .thenAnswer((_) async => tNumberTriviaModel);
         // act
         numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
         // assertions
@@ -67,11 +72,16 @@ void main() {
   }
 
   void _runTestsOffline({required Function allTests}) {
-    group('Device is offline  ... ', () {
+    group('Device is offline  .. ', () {
       setUp(() =>
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => false));
 
       test('Check the Device is offline', () {
+        // arrange
+        when(mockRemoteDataSource.getConcreteNumberTrivia(tNumber))
+            .thenAnswer((_) async => tNumberTriviaModel);
+        when(mockLocalDataSource.getLastNumberTrivia())
+            .thenAnswer((_) async => tNumberTriviaModel);
         // act
         numberTriviaRepositoryImpl.getConcreteNumberTrivia(tNumber);
         // assertion
@@ -83,7 +93,7 @@ void main() {
   }
 
   /// all [getConcreteNumberTrivia] tests
-  group('getConcreteNumberTrivia() ...', () {
+  group('getConcreteNumberTrivia() .. ', () {
     _runTestsOnline(allTests: () {
       test(
           'should return Right(tNumberTrivia) && Save it to cahce when call getConcreteNumberTrivia() ',
@@ -169,40 +179,47 @@ void main() {
   });
 
   /// all [getRandomNumberTrivia] tests
-  group('getRandomNumberTrivia() ...', () {
-    group('Device is Online ... ', () {
+  group('getRandomNumberTrivia() .. ', () {
+    group('Device is Online .. ', () {
       setUp(() =>
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => true));
-      test('Check the Device is online ', () {
-        // act
-        numberTriviaRepositoryImpl.getRandomNumberTrivia();
-        // assertion
-        verify(mockNetworkInfo.isConnected);
-      });
+      group('should return right ..', () {
+        setUp(() {
+          // arrang
+          when(mockRemoteDataSource.getRandomNumberTrivia())
+              .thenAnswer((_) async => tNumberTriviaModel);
+          when(mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
+              .thenAnswer((_) async => Void);
+        });
+        test('Check the Device is online ', () {
+          // act
+          numberTriviaRepositoryImpl.getRandomNumberTrivia();
+          // assertion
+          verify(mockNetworkInfo.isConnected);
+        });
 
-      test(
-          'should return Right(NumberTriviaModel) when call getRandomNumberTrivia from remoteDataSource .. ',
-          () async {
-        // arrang
-        when(mockRemoteDataSource.getRandomNumberTrivia())
-            .thenAnswer((_) async => tNumberTriviaModel);
-        when(mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel))
-            .thenAnswer((_) async => Void);
-        // act
-        final actualResult =
-            await numberTriviaRepositoryImpl.getRandomNumberTrivia();
-        // assertion
+        test(
+            'should return Right(NumberTriviaModel) when call getRandomNumberTrivia from remoteDataSource .. ',
+            () async {
+          // act
+          final actualResult =
+              await numberTriviaRepositoryImpl.getRandomNumberTrivia();
+          // assertion
 
-        expect(actualResult, const Right(tNumberTrivia));
-        verify(mockRemoteDataSource.getRandomNumberTrivia());
-        verify(mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel));
+          expect(actualResult, const Right(tNumberTrivia));
+          verify(mockRemoteDataSource.getRandomNumberTrivia());
+          verify(mockLocalDataSource.cacheNumberTrivia(tNumberTriviaModel));
+        });
       });
     });
 
-    group('Device is offline ... ', () {
+    group('Device is offline .. ', () {
       setUp(() =>
           when(mockNetworkInfo.isConnected).thenAnswer((_) async => false));
       test('Check the Device is offline ', () {
+        //arrange
+        when(mockLocalDataSource.getLastNumberTrivia())
+            .thenAnswer((_) async => tNumberTriviaModel);
         // act
         numberTriviaRepositoryImpl.getRandomNumberTrivia();
         // assertion
