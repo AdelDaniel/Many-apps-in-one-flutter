@@ -58,20 +58,20 @@ class NumberTriviaLocalDataSourceHiveImpl
   }
 }
 
-class NumberTriviaLocalDataSourceSharedPrefImpl
-    implements NumberTriviaLocalDataSource {
-  // final HiveInterface hiveInterface;
-  // const NumberTriviaLocalDataSourceHiveImpl({required this.hiveInterface});
+// class NumberTriviaLocalDataSourceSharedPrefImpl
+//     implements NumberTriviaLocalDataSource {
+//   // final HiveInterface hiveInterface;
+//   // const NumberTriviaLocalDataSourceHiveImpl({required this.hiveInterface});
 
-  @override
-  Future<NumberTriviaModel> getLastNumberTrivia() {
-    // TODO: implement getLastNumberTrivia
-    throw UnimplementedError();
-  }
+//   @override
+//   Future<NumberTriviaModel> getLastNumberTrivia() {
+//     // TODO: implement getLastNumberTrivia
+//     throw UnimplementedError();
+//   }
 
-  @override
-  Future<void> cacheNumberTrivia(NumberTriviaModel numberTriviaToCache) async {
-    // TODO: implement getLastNumberTrivia
-    throw UnimplementedError();
-  }
-}
+//   @override
+//   Future<void> cacheNumberTrivia(NumberTriviaModel numberTriviaToCache) async {
+//     // TODO: implement getLastNumberTrivia
+//     throw UnimplementedError();
+//   }
+// }

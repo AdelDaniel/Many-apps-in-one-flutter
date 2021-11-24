@@ -20,6 +20,7 @@ class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource {
   final http.Client client;
   const NumberTriviaRemoteDataSourceImpl({required this.client});
 
+// http://numbersapi.com/42
   @override
   Future<NumberTriviaModel> getConcreteNumberTrivia(int number) =>
       _getConcreteNumberTrivia(stringURL: 'http://numbersapi.com/$number');
@@ -41,9 +42,8 @@ class NumberTriviaRemoteDataSourceImpl implements NumberTriviaRemoteDataSource {
       }
       return NumberTriviaModel.fromJson(response.body);
     } catch (e) {
+      print(e);
       throw const ServerException();
-    } finally {
-      client.close();
     }
   }
 }

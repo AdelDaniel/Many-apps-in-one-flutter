@@ -3,3 +3,7 @@ https://www.google.com/search?q=build_runner&oq=build_runner&aqs=edge..69i57.294
 https://github.com/thomasviana/clean_architecture_TDD
 
 https://stackoverflow.com/questions/68843478/null-is-not-a-subtype-of-type-futureeitherfailure-numbertrivia
+
+// getIt 
+
+https://resocoder.com/2019/10/21/flutter-tdd-clean-architecture-course-13-dependency-injection-user-interface/

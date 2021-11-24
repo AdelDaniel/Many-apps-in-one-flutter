@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'features/XylophoneApp/xylophone_app.dart';
+import 'features/number_trivia/presentation/pages/number_trivia_page.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/homeScreen';
@@ -25,13 +26,14 @@ class HomeScreen extends StatelessWidget {
               ElevatedButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, XylophoneApp.routeName),
-                child: const Text('Xylophone App',
+                child: const Text(XylophoneApp.routeName,
                     style: TextStyle(fontSize: 15.0)),
               ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                label: const Text('Park Out', style: TextStyle(fontSize: 15.0)),
-                icon: const Icon(Icons.eject),
+              ElevatedButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, NumberTriviaPage.routeName),
+                child: const Text(NumberTriviaPage.routeName,
+                    style: TextStyle(fontSize: 15.0)),
               ),
               ElevatedButton.icon(
                 onPressed: () {},
