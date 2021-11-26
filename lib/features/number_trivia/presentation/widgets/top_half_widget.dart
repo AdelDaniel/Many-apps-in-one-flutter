@@ -18,8 +18,7 @@ class TopHalf extends StatelessWidget {
         } else if (state is ErrorState) {
           return MessageDisplay(message: state.message);
         } else if (state is LoadingState) {
-          return const SizedBox(
-              width: 50, height: 50, child: CircularProgressIndicator());
+          return const LoadingWidget();
         } else if (state is LoadedState) {
           return TriviaDisplay(numberTrivia: state.numberTrivia);
         }

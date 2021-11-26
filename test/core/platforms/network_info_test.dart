@@ -3,21 +3,35 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:xylophoneflutter/core/platforms/network_info.dart';
-import 'network_info_test.mocks.dart';
+import 'package:xylophoneflutter/features/connection_check/cubit/connection_check_cubit.dart';
+import 'package:xylophoneflutter/features/connection_check/cubit/is_connected_check_cubit.dart';
+// import 'network_info_test.mocks.dart';
 
-// class MockInternetConnectionChecker extends Mock
-//     implements InternetConnectionChecker {}
+class MockInternetConnectionChecker extends Mock
+    implements InternetConnectionChecker {}
 
-@GenerateMocks([InternetConnectionChecker])
+class MockConnectionCheckCubit extends Mock implements ConnectionCheckCubit {}
+
+class MockIsConnectedCheckCubit extends Mock implements IsConnectedCheckCubit {}
+
+@GenerateMocks(
+    [InternetConnectionChecker, ConnectionCheckCubit, IsConnectedCheckCubit])
 void main() {
   late MockInternetConnectionChecker mockInternetConnectionChecker;
   late NetWorkInfoImpl netWorkInfoImpl;
+  late MockConnectionCheckCubit mockConnectionCheckCubit;
+  late MockIsConnectedCheckCubit isConnectedCheckCubit;
   final tTrueConnectionFuture = Future.value(true);
   final tFalseHasConnectionFuture = Future.value(false);
 
   setUp(() {
     mockInternetConnectionChecker = MockInternetConnectionChecker();
-    netWorkInfoImpl = NetWorkInfoImpl(mockInternetConnectionChecker);
+    mockConnectionCheckCubit = MockConnectionCheckCubit();
+    isConnectedCheckCubit = MockIsConnectedCheckCubit();
+    netWorkInfoImpl = NetWorkInfoImpl(
+        connectionCheckCubit: mockConnectionCheckCubit,
+        internetConnectionChecker: mockInternetConnectionChecker,
+        isConnectedCheckCubit: isConnectedCheckCubit);
   });
   test('should return true when there is internet connection ', () {
     // arrange

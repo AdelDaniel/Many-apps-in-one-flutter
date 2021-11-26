@@ -6,7 +6,6 @@ import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../core/platforms/network_info.dart';
 import '../../core/utils/input_converter.dart';
-
 import 'data/repositories/number_trivia_repository_impl.dart';
 import 'data/sources/number_trivia_local_data_source.dart';
 import 'data/sources/number_trivia_remote_data_source.dart';
@@ -19,7 +18,6 @@ import 'presentation/bloc/number_trivia_bloc.dart';
 // https://resocoder.com/2019/10/21/flutter-tdd-clean-architecture-course-13-dependency-injection-user-interface/
 
 final sl = GetIt.instance;
-
 Future<void> setup() async {
 //! Features - Number Trivia
 //Bloc
@@ -55,7 +53,10 @@ Future<void> setup() async {
 
   //! Core
   sl.registerLazySingleton(() => const InputConverter());
-  sl.registerLazySingleton<NetworkInfo>(() => NetWorkInfoImpl(sl()));
+  sl.registerLazySingleton<NetworkInfo>(() => NetWorkInfoImpl(
+      connectionCheckCubit: sl(),
+      internetConnectionChecker: sl(),
+      isConnectedCheckCubit: sl()));
 
   //! External -- packages
   // final appDocDir = await getApplicationDocumentsDirectory();
