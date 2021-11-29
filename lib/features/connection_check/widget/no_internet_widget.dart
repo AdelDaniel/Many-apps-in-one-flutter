@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:xylophoneflutter/features/connection_check/cubit/is_connected_check_cubit.dart';
 
 import '../cubit/connection_check_cubit.dart';
+import '../cubit/is_connected_check_cubit.dart';
 
 class NoInternetWidget extends StatelessWidget {
   const NoInternetWidget();

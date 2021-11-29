@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'features/XylophoneApp/xylophone_app.dart';
 import 'features/number_trivia/presentation/pages/number_trivia_page.dart';
+import 'features/responsive_impl_app/courses_page.dart';
 
 class HomeScreen extends StatelessWidget {
   static const String routeName = '/homeScreen';
@@ -21,25 +22,22 @@ class HomeScreen extends StatelessWidget {
             crossAxisSpacing: 10,
             mainAxisSpacing: 10,
             padding: const EdgeInsets.all(10),
-            crossAxisCount: orientation == Orientation.portrait ? 2 : 3,
+            crossAxisCount: orientation == Orientation.portrait ? 2 : 4,
             children: <Widget>[
               ElevatedButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, XylophoneApp.routeName),
-                child: const Text(XylophoneApp.routeName,
-                    style: TextStyle(fontSize: 15.0)),
+                child: const Text(XylophoneApp.routeName),
               ),
               ElevatedButton(
                 onPressed: () =>
                     Navigator.pushNamed(context, NumberTriviaPage.routeName),
-                child: const Text(NumberTriviaPage.routeName,
-                    style: TextStyle(fontSize: 15.0)),
+                child: const Text(NumberTriviaPage.routeName),
               ),
-              ElevatedButton.icon(
-                onPressed: () {},
-                label: const Text('Maintainence In',
-                    style: TextStyle(fontSize: 15.0)),
-                icon: const Icon(Icons.vertical_align_bottom),
+              ElevatedButton(
+                onPressed: () =>
+                    Navigator.pushNamed(context, CoursesPage.routeName),
+                child: const Text(CoursesPage.routeName),
               ),
               ElevatedButton.icon(
                 onPressed: () {},

@@ -7,7 +7,7 @@ import '../bloc/number_trivia_bloc.dart';
 import '../widgets/number_trivai_body.dart';
 
 class NumberTriviaPage extends StatelessWidget {
-  static const String routeName = "Number Trivia Game";
+  static const String routeName = "/Number-Trivia-Game";
   static Route route() => MaterialPageRoute(
       settings: const RouteSettings(name: routeName),
       builder: (_) => const NumberTriviaPage());

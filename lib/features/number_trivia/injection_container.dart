@@ -1,8 +1,10 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:get_it/get_it.dart';
 import 'package:hive/hive.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:http/http.dart' as http;
-import 'package:internet_connection_checker/internet_connection_checker.dart';
+
+// import 'package:internet_connection_checker/internet_connection_checker.dart';
 
 import '../../core/platforms/network_info.dart';
 import '../../core/utils/input_converter.dart';
@@ -53,10 +55,13 @@ Future<void> setup() async {
 
   //! Core
   sl.registerLazySingleton(() => const InputConverter());
-  sl.registerLazySingleton<NetworkInfo>(() => NetWorkInfoImpl(
-      connectionCheckCubit: sl(),
-      internetConnectionChecker: sl(),
-      isConnectedCheckCubit: sl()));
+  // sl.registerLazySingleton<NetworkInfo>(() => NetWorkInfoImpl(
+  //     connectionCheckCubit: sl(),
+  //     internetConnectionChecker: sl(),
+  //     isConnectedCheckCubit: sl()));
+
+  sl.registerLazySingleton<NetworkInfo>(() => ConnectivityPlusNetworkInfoImpl(
+      connectionCheckCubit: sl(), connectivity: sl()));
 
   //! External -- packages
   // final appDocDir = await getApplicationDocumentsDirectory();
@@ -65,5 +70,6 @@ Future<void> setup() async {
 
   sl.registerLazySingleton<HiveInterface>(() => Hive);
   sl.registerLazySingleton(() => http.Client());
-  sl.registerLazySingleton(() => InternetConnectionChecker());
+  // sl.registerLazySingleton(() => InternetConnectionChecker());
+  sl.registerLazySingleton(() => Connectivity());
 }
